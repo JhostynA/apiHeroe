@@ -25,4 +25,18 @@ class Alignment extends Conexion
             throw $e;
         }
     }
+
+    public function getAll($data = []){
+        try {
+          $consulta = $this->pdo->prepare("CALL spu_listar_bandosP(?)");
+          $consulta->execute(
+            array(
+              $data['id']
+            )
+          );
+          return $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+          die($e->getMessage());
+        }
+    }
 }

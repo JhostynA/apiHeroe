@@ -11,7 +11,7 @@ class Publisher extends Conexion{
 
   public function getAll(){
     try{
-      $consulta = $this->pdo->prepare("CALL spu_publisher_listar()");
+      $consulta = $this->pdo->prepare("CALL spu_publisher_listar");
       $consulta->execute();
       return $consulta->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -19,7 +19,8 @@ class Publisher extends Conexion{
       die($e->getMessage());
     }
   }
-  public function getHeroesPublisher($publisherId) {
+
+  public function HerieLP($publisherId) {
     try {
       $consulta = $this->pdo->prepare("CALL spu_heroe_listar(:publisher_id)");
       $consulta->bindParam(':publisher_id', $publisherId, PDO::PARAM_INT);
